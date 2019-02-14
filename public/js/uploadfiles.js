@@ -38,7 +38,8 @@ $(document).ready(function(){
                     }
                 }
             }
-            $.getJSON('https://apptd.herokuapp.com/sign-s3-upload', params).done(function(res) {
+            var domainURL = process.env.NODE_ENV !== "production" ? 'http://localhost:3000' : "https://apptd.herokuapp.com";
+            $.getJSON(`${domainURL}/sign-s3-upload`, params).done(function(res) {
                 if (!res.policy) {
                     return cb('No se pudo recibir una URL para cargar la imagen');
                 }
